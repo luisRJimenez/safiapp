@@ -11,7 +11,13 @@ class municipio extends Model
 
 
 
+    public function empresas() {
+        return $this->hasMany(empresas::class);
+    }
 
+    public function departamento() {
+        return $this->belongsTo(departamento::class, 'departamento_id', 'id');
+    }
 
 
 }

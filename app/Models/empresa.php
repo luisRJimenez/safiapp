@@ -15,10 +15,12 @@ class empresa extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'empnombre', 'empdireccion', 'emptelefono', 'empestado', 'municipio_id', 'departamento_id'
+        'empnombre', 'empdireccion', 'emptelefono', 'empestado', 'municipio_id', 'departamento_id', 'municipio_cod', 'empestado'
     ];
 
-
+    public function municipio() {
+        return $this->belongsTo(municipio::class, 'municipio_id', 'id');
+    }
 
 
 

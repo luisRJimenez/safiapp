@@ -13,37 +13,50 @@ class CrudEmpresa extends Component
 
     use WithPagination;
 
-
+    public $empresas;
     public $buscar;
 
+    public function mount(empresa $empresas){
+        $this->empresas = $empresas;
+
+    }
 
     public function render()
     {
-        //dd($this->municipios);
-
-        $datos = empresa::where('empnombre', 'like', '%'. $this->buscar .'%')
+        $datos =  $this->empresas->where('empnombre', 'like', '%'. $this->buscar .'%')
                         ->orWhere('empdireccion', 'like', '%'. $this->buscar .'%')
                         ->orderBy('empnombre')
                         ->paginate(5);
 
         return view('livewire.empresa.crud-empresa',[
-
-            'departamento'=> departamento::all(),
+            //'departamento'=> departamento::all(),
             'municipio'=> municipio::all(),
-            // 'muni' => $this->municipios->first(),
-            'data' => $datos,
+            'data' => $datos
             ]);
     }
 
-    public function getMunicipiosProperty()
+    public function estado($id)
     {
-        // $empresamunicipio = municipio::select('*')
-        //                             ->Join('empresas', 'empresas.departamento_id', 'municipios.dto_id')
-        //                             ->Join('municipios as muni', 'empresas.municipio_id', 'muni.muncodigo' )
-        //                             ->get();
 
-        // return $empresamunicipio;
+        if ($id) {
+            $record = empresa::findOrFail($id);
+            $nombreemp = $record->empnombre;
+            $record->update([
+                'empestado' => 0,
+                'empgrabo' => 'luisrodrigo',
+                'empmodif' => 'luisrodrigo'
+            ]);
+
+            $record->delete();
+        }
+
+        $this->mensaje = "Se elimino la empresa ${nombreemp} " ;
+
+
+        $this->emit('alert', $this->mensaje);
     }
+
+
 
 
 }

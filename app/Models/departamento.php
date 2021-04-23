@@ -9,8 +9,11 @@ class departamento extends Model
 {
     use HasFactory;
 
+    protected $with = ['municipios'];
 
-
+    public function municipios() {
+        return $this->hasMany(municipio::class);
+    }
 
 
 
