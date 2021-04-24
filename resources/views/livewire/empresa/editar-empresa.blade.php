@@ -5,29 +5,35 @@
 
 
     <x-jet-dialog-modal wire:model='open'>
-        <x-slot name="title">Actualizar Empresa</x-slot>
+        <x-slot name="title">Actualizar  {{$empresas->empnombre}}</x-slot>
 
         <x-slot name="content">
             <div class="grid">
 
-                <div class="w-full py-2" >
+                <div  class="w-full py-2" >
                     <x-jet-label value="Departamento"></x-jet-label>
                     <select wire:model='selecteddto' class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <option value="">--Seleccionar--</option>
-                        @foreach ($departamento as $dto)
-                            <option value="{{$dto->id}}">{{$dto->dtodescripcion}}</option>
 
+
+                        @foreach ($departamento as $dto)
+                            <option
+                                {{-- @if ($dto->id == $empresas->departamento_id)
+                                selected value="{{$empresas->departamento_id}}"
+                                @endif --}}
+                                value="{{$dto->id}}" {{$empresas->departamento_id == $dto->id ? 'selected' : ''}}>{{$dto->dtodescripcion }}
+                            </option>
                         @endforeach
                     </select>
-                    <x-jet-input-error for="selecteddto"/>
+                    <x-jet-input-error for='empresas.selecteddto'/>
                 </div>
+
 
                 @if (!is_null($municipio))
 
                 <div class="w-full  py-2"  >
                     <x-jet-label value="Municipio"></x-jet-label>
                     <select wire:model='selectedmunicipio' class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <option value="">--Seleccionar--</option>
+
                         @foreach ($municipio as $item)
                             <option value="{{$item->id}}">{{$item->mundescripcion}}</option>
 
@@ -40,21 +46,23 @@
 
 
 
+
                 <div class="w-full py-2" >
                     <x-jet-label value="Razón Social"></x-jet-label>
-                    <x-jet-input type="text" placeholder="Razon social" wire:model.defer='empnombre' class="w-full"></x-jet-input>
-                    <x-jet-input-error for="empnombre"/>
+                    <x-jet-input type="text"  class="w-full" wire:model.defer='empresas.empnombre'></x-jet-input>
+                    <x-jet-input-error for="empresas.empnombre"/>
                 </div>
+
                 <div class="w-full py-2 " >
                     <x-jet-label value="Dirección"></x-jet-label>
-                    <x-jet-input type="text" placeholder="Dirección" wire:model.defer='empdireccion' class="w-full"></x-jet-input>
-                    <x-jet-input-error for="empdireccion"/>
+                    <x-jet-input type="text"  wire:model.defer='empresas.empdireccion' class="w-full"></x-jet-input>
+                    <x-jet-input-error for="empresas.empdireccion"/>
                 </div>
 
                 <div class="w-full py-2 " >
                     <x-jet-label value="Teléfonos"></x-jet-label>
-                    <x-jet-input type="text" placeholder="Teléfonos" wire:model.defer='emptelefono' class="w-full"></x-jet-input>
-                    <x-jet-input-error for="emptelefono"/>
+                    <x-jet-input type="text"  wire:model.defer='empresas.emptelefono' class="w-full"></x-jet-input>
+                    <x-jet-input-error for="empresas.emptelefono"/>
                 </div>
 
 
