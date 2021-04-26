@@ -57,6 +57,9 @@ class CrudEmpresa extends Component
     }
 
 
+    public function updatedBuscar(){
 
+        $this->resetPage();
+    }
 
 }

@@ -12,7 +12,7 @@
 
                 <div  class="w-full py-2" >
                     <x-jet-label value="Departamento"></x-jet-label>
-                    <select wire:model='selecteddto' class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <select wire:model='departamentoid' class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
 
                         @foreach ($departamento as $dto)
@@ -20,11 +20,12 @@
                                 {{-- @if ($dto->id == $empresas->departamento_id)
                                 selected value="{{$empresas->departamento_id}}"
                                 @endif --}}
-                                value="{{$dto->id}}" {{$empresas->departamento_id == $dto->id ? 'selected' : ''}}>{{$dto->dtodescripcion }}
+                                value="{{$dto->id}}" >{{$dto->dtodescripcion }}
+                                {{-- {{$empresas->departamento_id == $dto->id ? 'selected' : ''}} --}}
                             </option>
                         @endforeach
                     </select>
-                    <x-jet-input-error for='empresas.selecteddto'/>
+                    <x-jet-input-error for='departamentoid'/>
                 </div>
 
 
@@ -32,15 +33,15 @@
 
                 <div class="w-full  py-2"  >
                     <x-jet-label value="Municipio"></x-jet-label>
-                    <select wire:model='selectedmunicipio' class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-
+                    <select wire:model.defer='empresas.municipio_id' class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <option value="">-seleccionar-</option>
                         @foreach ($municipio as $item)
                             <option value="{{$item->id}}">{{$item->mundescripcion}}</option>
 
                         @endforeach
                     </select>
 
-                    <x-jet-input-error for="selectedmunicipio"/>
+                    <x-jet-input-error for="empresas.municipio_id"/>
                 </div>
                 @endif
 
@@ -72,9 +73,9 @@
 
         <x-slot name="footer">
             <x-jet-secondary-button wire:click="$set('open', false)">Cancelar</x-jet-secondary-button>
-            <x-jet-button wire:click="salvar" wire:loading.remove wire:target="salvar">Actualizar</x-jet-button>
+            <x-jet-button wire:click="actualizar" wire:loading.remove wire:target="actualizar">Actualizar</x-jet-button>
 
-            <div wire:loading wire:target="salvar">
+            <div wire:loading wire:target="actualizar">
 
                 <x-jet-button>
                     <svg class="animate-spin -ml-2 mr-2 h-3 w-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

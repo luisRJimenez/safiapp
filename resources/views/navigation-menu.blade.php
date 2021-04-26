@@ -74,7 +74,9 @@
                                 {{ __('Parentesco') }}
                             </x-jet-dropdown-link>
 
-
+                            <x-jet-dropdown-link href="{{ route('tipoafiliacion') }}">
+                                {{ __('Tipo Afiliación') }}
+                            </x-jet-dropdown-link>
 
 
                             <x-jet-dropdown-link href="{{ route('tipoasesor') }}">

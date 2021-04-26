@@ -12,7 +12,7 @@ use App\Http\Livewire\CrudTipoasesor;
 use App\Http\Livewire\CrudTipocontrato;
 use App\Http\Livewire\CrudTipopapeleria;
 use App\Http\Livewire\CrudTipoplan;
-
+use App\Http\Livewire\Tipopago\CrudTipoafiliacion;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/parentesco', CrudParentes
 Route::middleware(['auth:sanctum', 'verified'])->get('/ocupacion', CrudOcupacion::class)->name('ocupacion');
 Route::middleware(['auth:sanctum', 'verified'])->get('/especialidad', CrudEspecialidad::class)->name('especialidad');
 Route::middleware(['auth:sanctum', 'verified'])->get('/empresa', CrudEmpresa::class)->name('empresa');
+Route::middleware(['auth:sanctum', 'verified'])->get('/tipoafiliacion', CrudTipoafiliacion::class)->name('tipoafiliacion');
 Route::middleware(['auth:sanctum', 'verified'])->get('/tipoasesor', CrudTipoasesor::class)->name('tipoasesor');
 Route::middleware(['auth:sanctum', 'verified'])->get('/grupoasesor', CrudGrupoasesores::class)->name('grupoasesor');
 Route::middleware(['auth:sanctum', 'verified'])->get('/tipocontrato', CrudTipocontrato::class)->name('tipocontrato');

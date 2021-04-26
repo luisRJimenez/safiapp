@@ -16,4 +16,8 @@ class tipocontrato extends Model
 
     protected $fillable = ['tpcdescripcion', 'tpcestado'];
 
+    public function tipopagos() {
+        return $this->hasMany(tipoPago::class);
+    }
+
 }

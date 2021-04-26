@@ -10,4 +10,8 @@ class tipoPlan extends Model
     use HasFactory;
 
     protected $fillable = ['tpldescripcion', 'tplpuntoscontado', 'tplpuntoscredito', 'tplestado'];
+
+    public function tipopagos() {
+        return $this->hasMany(tipoPago::class);
+    }
 }
