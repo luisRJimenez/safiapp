@@ -14,24 +14,26 @@ class CrudTipoafiliacion extends Component
     use WithPagination;
 
     public $buscarinactivos = false;
+    public $operador;
     public $tipopagos;
+
     public $buscar;
 
     public function mount(tipoPago $tipopagos){
         $this->tipopagos = $tipopagos;
-
     }
+
+    protected $listeners = ['render'];
 
     public function render()
     {
-        $datos =  $this->tipopagos->where('tppdescripcion', 'like', '%'. $this->buscar .'%')
-                        ->where('tppestado', !$this->buscarinactivos)
-                        ->paginate(10);
+        // $this->operador = $this->tipopagos->where('tppdescripcion', 'like', '%'. $this->buscar .'%')
+        //                                   ->paginate(10);
+
+       $datos =  $this->tipopagoss;
 
         return view('livewire.tipopago.crud-tipoafiliacion',[
-
-
-            'data' => $datos
+                    'data' => $datos
             ]);
     }
 
@@ -50,19 +52,34 @@ class CrudTipoafiliacion extends Component
             $record->delete();
         }
 
-        $this->mensaje = "Se elimino la empresa ${nomtipopago} " ;
-
+        $this->mensaje = "Se elimino el plan ${nomtipopago} " ;
 
         $this->emit('alert', $this->mensaje);
     }
 
 
     public function updatedBuscar(){
-
         $this->resetPage();
     }
 
     public function updatedBuscarinactivos(){
-        $this->buscarinactivos;
+        $this->reset(['buscar']);
+    }
+
+    public function getTipopagossProperty(){
+
+        if ($this->buscarinactivos) {
+
+            return tipoPago::where('tppdescripcion', 'like', '%'. $this->buscar .'%')
+            ->where('tppestado', false)
+            ->withTrashed()
+            ->paginate(10);
+        } else {
+            return tipoPago::where('tppdescripcion', 'like', '%'. $this->buscar .'%')
+            ->where('tppestado', true)
+            ->paginate(10);
+
+        }
+
     }
 }

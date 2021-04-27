@@ -15,7 +15,8 @@ class tipoPago extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [ 'tppdescripcion', 'tppvalor', 'tppnumafiliados',
-                            'tppnumcarnes', 'tpppagacomision', 'tipo_plans_id', 'tipocontratos_id'];
+                            'tppnumcarnes', 'tpppagacomision', 'tipo_plans_id', 'tipocontrato_id', 
+                            'tppestado'];
 
     public function tipoPlan() {
         return $this->belongsTo(tipoPlan::class, 'tipo_plans_id', 'id');

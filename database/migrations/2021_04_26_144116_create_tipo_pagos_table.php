@@ -29,7 +29,7 @@ class CreateTipoPagosTable extends Migration
             $table->boolean('tppestado');
             $table->boolean('tpppagacomision');
             $table->foreignId('tipo_plans_id')->constrained()->onDelete('restrict');
-            $table->foreignId('tipocontrato_id')->constrained('id')->on('tipocontratos')->onDelete('restrict');
+            $table->foreignId('tipocontrato_id')->constrained()->onDelete('restrict');
             $table->string('tppgrabo');
             $table->string('tppmodif');
             $table->softDeletes();

@@ -10,12 +10,16 @@
 
         <div class="flex justify-between content-center items-center">
 
-            <div >
-                {{-- @livewire('empresa.adicionar-empresa') --}}
-                <input type="checkbox"  wire:model="buscarinactivos" />
+            <div class="Grid pt-2">
+                @livewire('tipopago.adicionar-tipopago')
+                <div class="flex py-1">
+                    {{-- <x-jet-input type="checkbox" id="buscarinactivos" wire:model="buscarinactivos"/> --}}
+                    <x-jet-checkbox  wire:model="buscarinactivos" id="buscarinactivos" />
+                    <x-jet-label for='buscarinactivos' value="Ver registros eliminados" class="ml-2"/>
+                </div>
             </div>
 
-            <div class="py-2">
+            <div class="py-1">
                 <x-jet-input type="text" wire:model="buscar" placeholder="Buscar ..."  class="text-sm"></x-jet-input>
             </div>
         </div>
@@ -60,7 +64,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white divide-y divide-gray-200 text-xs">
                             @foreach ($data as $item)
                                 <input type="hidden" value={{$item->id}}/>
                                 <tr>
@@ -92,7 +96,7 @@
 
                                         <div class="flex content-center items-center">
 
-                                            {{-- @livewire('empresa.editar-empresa', ['empresas' => $item], key($item->id)) --}}
+                                            @livewire('tipopago.editar-tipopago', ['tipopagos' => $item], key($item->id))
 
                                             <button wire:click="estado({{ $item->id }})" class="px-2   text-green-500  hover:text-black">
                                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></button>
