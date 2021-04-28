@@ -34,7 +34,7 @@
                                     ID
                                     </th>
                                     <th scope="col-4" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Razon Social
+                                    Nombe empresa
                                     </th>
                                     <th scope="col-4" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Dirección
