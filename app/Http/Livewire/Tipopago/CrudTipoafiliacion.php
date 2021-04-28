@@ -73,11 +73,11 @@ class CrudTipoafiliacion extends Component
             return tipoPago::where('tppdescripcion', 'like', '%'. $this->buscar .'%')
             ->where('tppestado', false)
             ->withTrashed()
-            ->paginate(10);
+            ->paginate();
         } else {
             return tipoPago::where('tppdescripcion', 'like', '%'. $this->buscar .'%')
             ->where('tppestado', true)
-            ->paginate(10);
+            ->paginate();
 
         }
 

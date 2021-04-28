@@ -53,7 +53,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white divide-y divide-gray-200 text-xs">
                             @foreach ($data as $item)
                                 <input type="hidden" value={{$item->id}}/>
                                 <tr>
@@ -98,4 +98,6 @@
       </div>
 
     </div>
+
+
 </div>
